@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Delete</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quotes/css/styles.css' %}">
+</head>
+<body>
+    <h1>Confirm Delete</h1>
+    <div class="container">
+        <p>Are you sure you want to delete the following quote?</p>
+        <blockquote>
+            <p>{{ quote.text }}</p>
+            <footer>— {{ quote.author }}</footer>
+        </blockquote>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirm Delete</button>
+            <a href="{% url 'quote_list' %}">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

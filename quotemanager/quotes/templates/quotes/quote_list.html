@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quotes</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quotes/css/styles.css' %}">
+</head>
+<body>
+    <h1>Quotes</h1>
+    <div class="container">
+        <!-- Search Form -->
+        <form method="get" action="{% url 'quote_list' %}">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search by author or quote">
+            <button type="submit">Search</button>
+        </form>
+        <a href="{% url 'add_quote' %}" class="btn">Add New Quote</a>
+        <ul>
+            {% if quotes %}
+                {% for quote in quotes %}
+                    <li>
+                        <p>{{ quote.text }}</p>
+                        <p class="author">- {{ quote.author }}</p>
+                        <a href="{% url 'edit_quote' quote.pk %}">Edit</a> |
+                        <a href="{% url 'delete_quote' quote.pk %}">Delete</a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="empty-message">Not Found</li>
+            {% endif %}
+        </ul>
+    </div>
+</body>
+</html>

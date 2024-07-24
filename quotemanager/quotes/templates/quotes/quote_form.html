@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quotes/css/styles.css' %}">
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+            <a href="{% url 'quote_list' %}">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
